@@ -1,0 +1,231 @@
+aic: "0.1"
+
+system:
+  name: Online Shop
+  version: 1.0.0
+  purpose: Let customers place and pay for orders, and confirm each one by email.
+  goals:
+    - A customer can place an order and pay for it.
+    - Every paid order is confirmed by email.
+  nonGoals:
+    - Managing stock.
+    - Shipping and returns.
+
+boundaries:
+  ordering:
+    name: Ordering
+    kind: domain
+    description: Taking and storing orders.
+    exposes: [orders-api, order-placed]
+    mayDependOn: [catalog]
+  catalog:
+    name: Catalog
+    kind: domain
+    description: Products and their prices.
+    exposes: [catalog-api]
+    mayDependOn: []
+  notifications:
+    name: Notifications
+    kind: domain
+    description: Telling customers what happened.
+    exposes: []
+    mayDependOn: [ordering]
+
+modules:
+  order-service:
+    name: Order Service
+    does: Prices and places orders, charges the customer and announces each placed order.
+    doesNot:
+      - Send emails.
+    boundary: ordering
+    deployedIn: order-service-unit
+    interfaces:
+      orders-api:
+        name: Orders API
+        description: Place an order and get an order.
+        operations:
+          place-order:
+            description: Prices the order, charges the customer and stores the order.
+            input: Order
+            output: Order
+            errors: [payment-declined, unknown-product]
+          get-order:
+            description: Returns one order.
+            output: Order
+            errors: [not-found]
+        spec:
+          format: openapi
+          ref: ./orders-api.openapi.yaml
+    uses:
+      - to: catalog-api
+        modes: [call]
+        description: Get the current price of each product.
+        onFailure: Reject the order and charge nothing.
+      - to: payment-provider
+        modes: [call]
+        description: Charge the customer.
+        onFailure: Reject the order and store nothing.
+      - to: orders
+        modes: [read, write]
+        onFailure: Return an error to the caller and refund the charge.
+      - to: order-placed
+        modes: [publish]
+        description: Announce that an order was placed.
+        onFailure: Retry until accepted. The order remains placed.
+  catalog-service:
+    name: Catalog Service
+    does: Answers what a product is and what it costs.
+    boundary: catalog
+    deployedIn: catalog-service-unit
+    interfaces:
+      catalog-api:
+        name: Catalog API
+        description: Get a product and its price.
+        operations:
+          get-product:
+            output: Product
+            errors: [not-found]
+  notification-worker:
+    name: Notification Worker
+    does: Sends the confirmation email for each placed order.
+    boundary: notifications
+    deployedIn: notification-worker-unit
+    activatedBy:
+      - kind: channel
+        channel: order-placed
+        onDuplicate: Ignore an event whose order was already confirmed, so one order never gets two emails.
+        onFailure: Retry, then set the event aside for review.
+    uses:
+      - to: email-provider
+        modes: [call]
+        description: Deliver the confirmation email.
+        onFailure: Fail the activation so the event is retried.
+
+stores:
+  orders:
+    name: Orders
+    description: Every placed order.
+    boundary: ordering
+    owner: order-service
+    holds: Order
+    consistency: strong
+    durability: durable
+
+channels:
+  order-placed:
+    name: order-placed
+    description: One message for each placed order.
+    boundary: ordering
+    style: topic
+    carries: OrderPlaced
+    delivery: at-least-once
+    ordering: none
+
+externals:
+  customer-app:
+    name: Customer app
+    kind: user
+    description: Web and mobile clients.
+    assumes:
+      - Sends authenticated requests.
+    uses:
+      - to: orders-api
+        modes: [call]
+        description: Place and follow orders.
+        onFailure: Show the error and let the customer retry.
+  payment-provider:
+    name: Payment provider
+    kind: third-party
+    description: Charges the customer.
+    assumes:
+      - A charge either succeeds or is declined, and is safe to retry with the same key.
+  email-provider:
+    name: Email provider
+    kind: third-party
+    description: Delivers email.
+    assumes:
+      - Accepts a message for later delivery.
+
+types:
+  Order:
+    description: A customer's order.
+    fields:
+      id: { type: string, required: true }
+      customerEmail: { type: string, required: true }
+      items: { type: array of Product, required: true }
+      total: { type: number, required: true }
+  Product:
+    description: Something for sale, with its current price.
+    fields:
+      id: { type: string, required: true }
+      name: { type: string, required: true }
+      price: { type: number, required: true }
+  OrderPlaced:
+    description: Announces that an order was placed.
+    fields:
+      orderId: { type: string, required: true }
+      customerEmail: { type: string, required: true }
+      total: { type: number, required: true }
+
+scenarios:
+  order-confirmed:
+    name: A paid order is stored and confirmed
+    when: A customer places an order and payment succeeds.
+    then: The order is in Orders and a confirmation email is sent.
+    path:
+      - customer-app
+      - orders-api
+      - order-service
+      - catalog-api
+      - payment-provider
+      - orders
+      - order-placed
+      - notification-worker
+      - email-provider
+
+decisions:
+  charge-before-storing:
+    name: Charge before storing
+    kind: assumption
+    status: accepted
+    statement: Payment is charged before the order is stored.
+    rationale: An order in Orders is always a paid order, so nothing downstream has to check.
+    appliesTo: [order-service]
+
+constraints:
+  orders-api-authentication:
+    name: Authentication on Orders API
+    category: cross-cutting
+    statement: Every operation of Orders API requires authentication.
+    appliesTo: [orders-api]
+    check:
+      method: test
+      detail: Call each operation without credentials and expect it to be rejected.
+  place-order-latency:
+    name: Placing an order is fast
+    category: quality
+    statement: Placing an order responds within 500 ms at the 95th percentile.
+    appliesTo: [orders-api]
+    check:
+      method: load-test
+
+deploymentUnits:
+  order-service-unit:
+    name: Order Service
+    description: Deploys and scales on its own.
+  catalog-service-unit:
+    name: Catalog Service
+    description: Deploys and scales on its own.
+  notification-worker-unit:
+    name: Notification Worker
+    description: Deploys and scales on its own.
+    scaling: With the number of waiting messages.
+
+bindings:
+  orders-api: HTTP with JSON
+  catalog-api: HTTP with JSON
+  orders: PostgreSQL
+  order-placed: RabbitMQ
+  order-service-unit: Container on Kubernetes
+  catalog-service-unit: Container on Kubernetes
+  notification-worker-unit: Container on Kubernetes

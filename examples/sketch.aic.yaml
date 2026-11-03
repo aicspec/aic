@@ -1,0 +1,37 @@
+aic: "0.1"
+
+# The smallest useful contract: a Draft. It is valid, and every gap is reported as work still to do.
+system:
+  name: Link shortener
+  purpose: Turn long links into short ones and redirect visitors.
+
+modules:
+  shortener:
+    name: Shortener
+    does: Creates short links and resolves them.
+    interfaces:
+      links-api:
+        name: Links API
+    uses:
+      - to: links
+        modes: [read, write]
+
+stores:
+  links:
+    name: Links
+    owner: shortener
+
+externals:
+  visitor:
+    name: Visitor
+    kind: user
+    uses:
+      - to: links-api
+        modes: [call]
+
+decisions:
+  expiry:
+    kind: question
+    status: open
+    statement: Do short links expire?
+    appliesTo: [links]

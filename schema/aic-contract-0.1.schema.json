@@ -1,0 +1,1109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:aic:contract:0.1",
+  "title": "AIC contract",
+  "description": "One system's architecture, written with the AIC primitives. Every element shares one namespace of ids. The x-aic-* keywords are annotations: x-aic-ref names the primitives a value may refer to, x-aic-primitive marks a primitive, and x-aic-widget is a rendering hint for tools.",
+  "type": "object",
+  "required": [
+    "aic",
+    "system"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-": {}
+  },
+  "properties": {
+    "aic": {
+      "const": "0.1",
+      "title": "AIC version",
+      "description": "Version of the AIC specification this contract is written against."
+    },
+    "system": {
+      "$ref": "#/$defs/System"
+    },
+    "boundaries": {
+      "title": "Boundaries",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Boundary"
+      }
+    },
+    "modules": {
+      "title": "Modules",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Module"
+      }
+    },
+    "stores": {
+      "title": "Stores",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Store"
+      }
+    },
+    "channels": {
+      "title": "Channels",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Channel"
+      }
+    },
+    "externals": {
+      "title": "Externals",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/External"
+      }
+    },
+    "types": {
+      "title": "Types",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Type"
+      }
+    },
+    "scenarios": {
+      "title": "Scenarios",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Scenario"
+      }
+    },
+    "decisions": {
+      "title": "Decisions",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Decision"
+      }
+    },
+    "constraints": {
+      "title": "Constraints",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Constraint"
+      }
+    },
+    "deploymentUnits": {
+      "title": "Deployment Units",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/DeploymentUnit"
+      }
+    },
+    "bindings": {
+      "title": "Bindings",
+      "description": "Maps an element id to the technology that realises it, as free text. Replacing a Binding leaves the rest of the contract unchanged.",
+      "x-aic-primitive": {
+        "name": "Binding",
+        "family": "Realisation"
+      },
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Id"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+      "description": "Unique across the whole contract, whatever the primitive."
+    },
+    "Name": {
+      "type": "string",
+      "minLength": 1,
+      "title": "Name",
+      "description": "Human-readable name."
+    },
+    "StringList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "System": {
+      "x-aic-primitive": {
+        "name": "System",
+        "family": "Intent"
+      },
+      "title": "System",
+      "description": "The thing described. Everything else serves its purpose and respects its non-goals.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "version": {
+          "type": "string",
+          "title": "Version",
+          "description": "Version of this contract. Other contracts refer to it by name and version."
+        },
+        "purpose": {
+          "type": "string",
+          "title": "Purpose",
+          "description": "Why the system exists.",
+          "x-aic-widget": "textarea"
+        },
+        "goals": {
+          "$ref": "#/$defs/StringList",
+          "title": "Goals",
+          "description": "What the system must achieve."
+        },
+        "nonGoals": {
+          "$ref": "#/$defs/StringList",
+          "title": "Non-goals",
+          "description": "What the system deliberately does not do."
+        }
+      }
+    },
+    "Scenario": {
+      "x-aic-primitive": {
+        "name": "Scenario",
+        "family": "Intent"
+      },
+      "title": "Scenario",
+      "description": "An end-to-end behaviour. It states what must happen, not how to test it: the verifier decides that.",
+      "type": "object",
+      "required": [
+        "when",
+        "then"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "given": {
+          "type": "string",
+          "title": "Given",
+          "description": "Starting state, if it matters.",
+          "x-aic-widget": "textarea"
+        },
+        "when": {
+          "type": "string",
+          "minLength": 1,
+          "title": "When",
+          "description": "The starting event.",
+          "x-aic-widget": "textarea"
+        },
+        "then": {
+          "type": "string",
+          "minLength": 1,
+          "title": "Then",
+          "description": "The expected outcome.",
+          "x-aic-widget": "textarea"
+        },
+        "path": {
+          "type": "array",
+          "title": "Path",
+          "description": "Elements the behaviour runs through, in order. Each must be reachable from an earlier one through a declared link.",
+          "items": {
+            "type": "string",
+            "x-aic-ref": [
+              "module",
+              "interface",
+              "store",
+              "channel",
+              "external"
+            ]
+          }
+        }
+      }
+    },
+    "Decision": {
+      "x-aic-primitive": {
+        "name": "Decision",
+        "family": "Intent"
+      },
+      "title": "Decision",
+      "description": "A choice, assumption or open question with its rationale. Accepted decisions bind; open ones block what depends on them.",
+      "type": "object",
+      "required": [
+        "kind",
+        "status",
+        "statement"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "kind": {
+          "enum": [
+            "choice",
+            "assumption",
+            "question"
+          ],
+          "title": "Kind"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "accepted",
+            "rejected"
+          ],
+          "title": "Status"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "title": "Statement",
+          "description": "What was chosen, assumed or asked.",
+          "x-aic-widget": "textarea"
+        },
+        "rationale": {
+          "type": "string",
+          "title": "Rationale",
+          "description": "Why.",
+          "x-aic-widget": "textarea"
+        },
+        "alternatives": {
+          "$ref": "#/$defs/StringList",
+          "title": "Alternatives",
+          "description": "Options considered and not taken."
+        },
+        "appliesTo": {
+          "type": "array",
+          "title": "Applies to",
+          "description": "Elements it concerns. Empty means the whole system.",
+          "items": {
+            "type": "string",
+            "x-aic-ref": [
+              "module",
+              "interface",
+              "store",
+              "channel",
+              "external",
+              "boundary",
+              "deploymentUnit",
+              "type",
+              "dependency"
+            ]
+          }
+        }
+      }
+    },
+    "Module": {
+      "x-aic-primitive": {
+        "name": "Module",
+        "family": "Structure"
+      },
+      "title": "Module",
+      "description": "Code with one responsibility. It behaves as stated and uses only what it declares.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "does": {
+          "type": "string",
+          "title": "Does",
+          "description": "Its responsibility: what it does.",
+          "x-aic-widget": "textarea"
+        },
+        "doesNot": {
+          "$ref": "#/$defs/StringList",
+          "title": "Does not",
+          "description": "Optional. What it deliberately does not do."
+        },
+        "role": {
+          "type": "string",
+          "title": "Role",
+          "description": "A descriptive label such as gateway or router. It creates no obligations."
+        },
+        "boundary": {
+          "type": "string",
+          "title": "Boundary",
+          "description": "The Boundary it belongs to.",
+          "x-aic-ref": [
+            "boundary"
+          ]
+        },
+        "deployedIn": {
+          "type": "string",
+          "title": "Deployment Unit",
+          "description": "The one Deployment Unit it is placed in.",
+          "x-aic-ref": [
+            "deploymentUnit"
+          ]
+        },
+        "interfaces": {
+          "type": "object",
+          "title": "Interfaces",
+          "description": "What this Module offers. A call to one of them activates the Module.",
+          "propertyNames": {
+            "$ref": "#/$defs/Id"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Interface"
+          }
+        },
+        "activatedBy": {
+          "type": "array",
+          "title": "Activated by",
+          "description": "What else makes it run, besides calls to its Interfaces.",
+          "items": {
+            "$ref": "#/$defs/Activation"
+          }
+        },
+        "uses": {
+          "type": "array",
+          "title": "Uses",
+          "description": "Its Dependencies. Any other use is a violation.",
+          "items": {
+            "$ref": "#/$defs/Dependency"
+          }
+        }
+      }
+    },
+    "Activation": {
+      "title": "Activation",
+      "oneOf": [
+        {
+          "title": "Channel",
+          "type": "object",
+          "required": [
+            "kind",
+            "channel"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "channel",
+              "title": "Kind"
+            },
+            "channel": {
+              "type": "string",
+              "title": "Channel",
+              "x-aic-ref": [
+                "channel"
+              ]
+            },
+            "onDuplicate": {
+              "type": "string",
+              "title": "On duplicate",
+              "description": "How a repeated message is handled. Needed when delivery is at-least-once.",
+              "x-aic-widget": "textarea"
+            },
+            "onFailure": {
+              "type": "string",
+              "title": "On failure",
+              "description": "What happens when handling a message fails.",
+              "x-aic-widget": "textarea"
+            }
+          }
+        },
+        {
+          "title": "Schedule",
+          "type": "object",
+          "required": [
+            "kind",
+            "schedule"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "schedule",
+              "title": "Kind"
+            },
+            "schedule": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Schedule",
+              "description": "For example: every hour."
+            }
+          }
+        },
+        {
+          "title": "Continuous",
+          "type": "object",
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "continuous",
+              "title": "Kind"
+            }
+          }
+        }
+      ]
+    },
+    "Store": {
+      "x-aic-primitive": {
+        "name": "Store",
+        "family": "Structure"
+      },
+      "title": "Store",
+      "description": "State that outlives a request, described by what it holds. A database, cache or file store.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "x-aic-widget": "textarea"
+        },
+        "boundary": {
+          "type": "string",
+          "title": "Boundary",
+          "description": "The Boundary it belongs to.",
+          "x-aic-ref": [
+            "boundary"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "title": "Owner",
+          "description": "The one Module or Boundary that owns it. Access from outside the owner must be justified by a Decision.",
+          "x-aic-ref": [
+            "module",
+            "boundary"
+          ]
+        },
+        "holds": {
+          "type": "string",
+          "title": "Holds",
+          "description": "The Type it holds.",
+          "x-aic-ref": [
+            "type"
+          ]
+        },
+        "consistency": {
+          "enum": [
+            "strong",
+            "eventual"
+          ],
+          "title": "Consistency"
+        },
+        "durability": {
+          "enum": [
+            "durable",
+            "volatile"
+          ],
+          "title": "Durability",
+          "description": "A cache is volatile."
+        },
+        "derivedFrom": {
+          "type": "string",
+          "title": "Derived from",
+          "description": "The source Store of a cache or replica.",
+          "x-aic-ref": [
+            "store"
+          ]
+        }
+      }
+    },
+    "Channel": {
+      "x-aic-primitive": {
+        "name": "Channel",
+        "family": "Structure"
+      },
+      "title": "Channel",
+      "description": "A named conduit that carries messages between Modules. Its producers and consumers follow from Dependencies and activations.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "x-aic-widget": "textarea"
+        },
+        "boundary": {
+          "type": "string",
+          "title": "Boundary",
+          "description": "The Boundary it belongs to.",
+          "x-aic-ref": [
+            "boundary"
+          ]
+        },
+        "style": {
+          "enum": [
+            "topic",
+            "queue",
+            "stream"
+          ],
+          "title": "Style"
+        },
+        "carries": {
+          "type": "string",
+          "title": "Carries",
+          "description": "The Type of its messages.",
+          "x-aic-ref": [
+            "type"
+          ]
+        },
+        "delivery": {
+          "enum": [
+            "at-most-once",
+            "at-least-once",
+            "exactly-once"
+          ],
+          "title": "Delivery"
+        },
+        "ordering": {
+          "enum": [
+            "none",
+            "per-key",
+            "total"
+          ],
+          "title": "Ordering"
+        }
+      }
+    },
+    "External": {
+      "x-aic-primitive": {
+        "name": "External",
+        "family": "Structure"
+      },
+      "title": "External",
+      "description": "Anything the team does not control: users, third parties, upstream systems.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "kind": {
+          "enum": [
+            "user",
+            "third-party",
+            "upstream-system",
+            "other"
+          ],
+          "title": "Kind"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "x-aic-widget": "textarea"
+        },
+        "assumes": {
+          "$ref": "#/$defs/StringList",
+          "title": "Assumes",
+          "description": "What the system assumes about it."
+        },
+        "contract": {
+          "type": "object",
+          "title": "Contract",
+          "description": "Another AIC contract this External refers to. Only what that contract exposes may be used.",
+          "required": [
+            "name",
+            "version"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "title": "System name"
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Version"
+            }
+          }
+        },
+        "uses": {
+          "type": "array",
+          "title": "Uses",
+          "description": "Inbound use: the Interfaces or Channels of this system that it relies on.",
+          "items": {
+            "$ref": "#/$defs/Dependency"
+          }
+        }
+      }
+    },
+    "Interface": {
+      "x-aic-primitive": {
+        "name": "Interface",
+        "family": "Interaction"
+      },
+      "title": "Interface",
+      "description": "What a Module offers to others. Callers use only what is declared. Its protocol belongs in a Binding.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "x-aic-widget": "textarea"
+        },
+        "operations": {
+          "type": "object",
+          "title": "Operations",
+          "propertyNames": {
+            "$ref": "#/$defs/Id"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Operation"
+          }
+        },
+        "spec": {
+          "$ref": "#/$defs/SpecRef",
+          "title": "Specification",
+          "description": "An existing document that describes this Interface."
+        }
+      }
+    },
+    "Operation": {
+      "title": "Operation",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "x-aic-widget": "textarea"
+        },
+        "input": {
+          "type": "string",
+          "title": "Input",
+          "x-aic-ref": [
+            "type"
+          ]
+        },
+        "output": {
+          "type": "string",
+          "title": "Output",
+          "x-aic-ref": [
+            "type"
+          ]
+        },
+        "errors": {
+          "$ref": "#/$defs/StringList",
+          "title": "Errors",
+          "description": "Failures a caller must handle."
+        }
+      }
+    },
+    "SpecRef": {
+      "title": "Specification reference",
+      "type": "object",
+      "required": [
+        "format",
+        "ref"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "enum": [
+            "openapi",
+            "asyncapi",
+            "protobuf",
+            "jsonschema",
+            "other"
+          ],
+          "title": "Format"
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1,
+          "title": "Reference",
+          "description": "Path or URL."
+        }
+      }
+    },
+    "Dependency": {
+      "x-aic-primitive": {
+        "name": "Dependency",
+        "family": "Interaction"
+      },
+      "title": "Dependency",
+      "description": "A directed use of an Interface, Store, Channel or External. Undeclared use is a violation.",
+      "type": "object",
+      "required": [
+        "to",
+        "modes"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id",
+          "title": "Id",
+          "description": "Optional. Needed only for a Constraint or Decision to refer to this Dependency."
+        },
+        "to": {
+          "type": "string",
+          "title": "To",
+          "x-aic-ref": [
+            "interface",
+            "store",
+            "channel",
+            "external"
+          ]
+        },
+        "modes": {
+          "type": "array",
+          "title": "Modes",
+          "description": "The kind of use, not the protocol.",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "call",
+              "publish",
+              "read",
+              "write"
+            ]
+          }
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "description": "Why it is used.",
+          "x-aic-widget": "textarea"
+        },
+        "onFailure": {
+          "type": "string",
+          "title": "On failure",
+          "description": "Required behaviour when the target fails.",
+          "x-aic-widget": "textarea"
+        },
+        "justifiedBy": {
+          "type": "string",
+          "title": "Justified by",
+          "description": "The Decision that allows access to a Store from outside its owner.",
+          "x-aic-ref": [
+            "decision"
+          ]
+        }
+      }
+    },
+    "Type": {
+      "x-aic-primitive": {
+        "name": "Type",
+        "family": "Interaction"
+      },
+      "title": "Type",
+      "description": "The shape and meaning of data that crosses a boundary or is stored. Either list its fields or point to an existing definition.",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "x-aic-widget": "textarea"
+        },
+        "fields": {
+          "type": "object",
+          "title": "Fields",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Field"
+          }
+        },
+        "definedBy": {
+          "$ref": "#/$defs/SpecRef",
+          "title": "Defined by",
+          "description": "An existing document that defines this Type."
+        }
+      }
+    },
+    "Field": {
+      "title": "Field",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "title": "Type",
+          "description": "A basic type such as string or number, or the name of a Type."
+        },
+        "required": {
+          "type": "boolean",
+          "title": "Required"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        }
+      }
+    },
+    "Boundary": {
+      "x-aic-primitive": {
+        "name": "Boundary",
+        "family": "Governance"
+      },
+      "title": "Boundary",
+      "description": "A named grouping of elements with visibility rules. It says who may see and depend on what.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "kind": {
+          "enum": [
+            "domain",
+            "layer",
+            "service",
+            "other"
+          ],
+          "title": "Kind"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "x-aic-widget": "textarea"
+        },
+        "within": {
+          "type": "string",
+          "title": "Within",
+          "description": "The Boundary that contains this one.",
+          "x-aic-ref": [
+            "boundary"
+          ]
+        },
+        "exposes": {
+          "type": "array",
+          "title": "Exposes",
+          "description": "Elements inside it that others may use. When absent, everything inside is visible.",
+          "items": {
+            "type": "string",
+            "x-aic-ref": [
+              "interface",
+              "channel",
+              "store"
+            ]
+          },
+          "x-aic-empty": "meaningful"
+        },
+        "mayDependOn": {
+          "type": "array",
+          "title": "May depend on",
+          "description": "Boundaries it may use. When absent, there is no restriction.",
+          "items": {
+            "type": "string",
+            "x-aic-ref": [
+              "boundary"
+            ]
+          },
+          "x-aic-empty": "meaningful"
+        }
+      }
+    },
+    "Constraint": {
+      "x-aic-primitive": {
+        "name": "Constraint",
+        "family": "Governance"
+      },
+      "title": "Constraint",
+      "description": "A measurable requirement or rule: a quality target, an architectural rule or a cross-cutting requirement. It holds wherever it applies.",
+      "type": "object",
+      "required": [
+        "statement"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "category": {
+          "enum": [
+            "quality",
+            "architecture",
+            "cross-cutting"
+          ],
+          "title": "Category"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "title": "Statement",
+          "x-aic-widget": "textarea"
+        },
+        "appliesTo": {
+          "type": "array",
+          "title": "Applies to",
+          "description": "Elements it is attached to. Empty means the whole system.",
+          "items": {
+            "type": "string",
+            "x-aic-ref": [
+              "module",
+              "interface",
+              "store",
+              "channel",
+              "external",
+              "boundary",
+              "deploymentUnit",
+              "dependency"
+            ]
+          }
+        },
+        "check": {
+          "type": "object",
+          "title": "Check",
+          "description": "How it is checked. Without one, it is reported as unverified.",
+          "required": [
+            "method"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "method": {
+              "enum": [
+                "static-analysis",
+                "test",
+                "load-test",
+                "inspection",
+                "runtime-monitoring",
+                "other"
+              ],
+              "title": "Method"
+            },
+            "detail": {
+              "type": "string",
+              "title": "Detail",
+              "x-aic-widget": "textarea"
+            }
+          }
+        }
+      }
+    },
+    "DeploymentUnit": {
+      "x-aic-primitive": {
+        "name": "Deployment Unit",
+        "family": "Realisation"
+      },
+      "title": "Deployment Unit",
+      "description": "What is built, released and scaled together. Modules name the unit they are placed in.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {}
+      },
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Name"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "x-aic-widget": "textarea"
+        },
+        "scaling": {
+          "type": "string",
+          "title": "Scaling",
+          "description": "How it scales.",
+          "x-aic-widget": "textarea"
+        }
+      }
+    }
+  }
+}
