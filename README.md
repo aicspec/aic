@@ -30,18 +30,7 @@ An AIC contract is a YAML file that records what a system must do, how it is div
 
 It sits between a human statement of intent and the code:
 
-```mermaid
-flowchart TB
-  intent["Human statement of intent"]
-  contract["AIC contract"]
-  code["Code and infrastructure"]
-  intent --> contract --> code
-
-  architects["Architects"] -- "write, review and approve" --> contract
-  tools["Design tools"] -- "render as blocks" --> contract
-  agents["Coding agents"] -- "implement" --> contract
-  verifiers["Verifiers"] -- "test the result against" --> contract
-```
+![Architects and design tools work on the AIC contract, human intent is captured in it, coding agents read it and write code, and verifiers test the code against it](images/aic-in-context.svg)
 
 What separates a contract from a diagram is that **a violation can be detected**. Each statement is a commitment that an implementation can honour or break.
 
@@ -73,13 +62,13 @@ They come from an AIC canvas that is still in development and is not published y
 
 A Scenario states an end-to-end behaviour: a starting event and an expected outcome. Selecting one numbers the path it must follow, so you can see whether the structure can deliver it.
 
-![The scenario "A paid order is stored and confirmed", with its nine steps numbered and highlighted on the canvas](images/scenario.png)
+![The scenario "A paid order is stored and confirmed", with its path highlighted and numbered on the diagram](images/scenario.png)
 
 ### The drawing and the text are the same contract
 
-The contract is plain text, so it can be reviewed and versioned like code. Here, the canvas draws what the YAML on the right says, and an edit on either side updates the other.
+The contract is plain text, so it can be reviewed and versioned like code. The diagram draws what the YAML on the right says, and an edit on either side updates the other.
 
-![The canvas next to the YAML of the same contract](images/yaml.png)
+![The diagram next to the YAML of the same contract](images/yaml.png)
 
 This is how the contract describes the worker that sends the email, including what must happen when a message arrives twice or a call fails:
 
@@ -103,9 +92,9 @@ notification-worker:
 
 ### Breaking a rule is reported
 
-Here the worker was changed to read the Orders store directly, a shortcut to find the customer's address. The Orders store belongs to Order Service, and the Ordering boundary does not expose it, so the change is reported as two violations and a warning.
+Here Catalog Service was changed to read the Orders store directly. That store belongs to Order Service, the Ordering boundary does not expose it, and the Catalog boundary may not depend on Ordering, so the change is reported as three violations and a warning.
 
-![The worker reading the Orders store directly, with two violations and one warning listed in the Problems panel](images/violation.png)
+![Catalog Service reading the Orders store directly, next to a list of three violations and one warning](images/violation.png)
 
 This check looks at the contract itself. Comparing running code with the contract is the job of a verifier: the [specification defines the checks](spec/aic-specification-0.1.md#conformance-and-evolution), and this repository does not include a verifier.
 
@@ -119,11 +108,11 @@ Design and deployment answer different questions. Deployment Units say what is b
 
 ### Start with a sketch
 
-Nobody has to specify everything up front. This [smallest useful contract](examples/sketch.aic.yaml) is valid, and its gaps are reported as work still to do. An open question stays visible as a Decision until someone answers it.
+Nobody has to specify everything up front. This [smallest useful contract](examples/sketch.aic.yaml) is valid, and its gaps are reported as work still to do. An open question stays visible as a Decision until someone answers it, as the list on the right shows.
 
-![A link shortener contract with one external, one module and one store, and an open decision](images/sketch.png)
+![A link shortener with one External, one Module and one Store, next to the open question "Do short links expire?"](images/sketch.png)
 
-Elements harden through three maturity levels:
+Elements harden through three maturity levels. The dot on each element above shows where it stands: yellow is Draft, and an empty dot is still below it.
 
 | Level | What it adds | What it enables |
 | --- | --- | --- |

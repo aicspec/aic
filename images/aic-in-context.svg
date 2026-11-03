@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" role="img" aria-labelledby="t d">
+<title id="t">Who interacts with an AIC contract</title>
+<desc id="d">Architects turn human intent into an AIC contract, and design tools render it. Coding agents read the contract and write code. Verifiers read the contract, inspect the code and report each violation.</desc>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7d8177"/></marker>
+<marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+</defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, 'Noto Sans', sans-serif; fill: #1f2328; }</style>
+<rect width="1000" height="560" rx="12" fill="#ffffff"/>
+<rect x="345" y="28" width="150" height="74" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
+<text x="420.0" y="62.0" font-size="16" font-weight="600" fill="#1f2328" text-anchor="middle">Architects</text>
+<text x="420.0" y="82.0" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">People</text>
+<rect x="525" y="28" width="150" height="74" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
+<text x="600.0" y="62.0" font-size="16" font-weight="600" fill="#1f2328" text-anchor="middle">Design tools</text>
+<text x="600.0" y="82.0" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">Any tool</text>
+<polyline points="420,102 420,188" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="262.0" y="136" width="153.0" height="20" rx="3" fill="#ffffff"/>
+<text x="410" y="150" font-size="13" font-weight="400" fill="#5b6168" text-anchor="end">write, review, approve</text>
+<polyline points="600,102 600,188" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="605.0" y="136" width="114.0" height="20" rx="3" fill="#ffffff"/>
+<text x="610" y="150" font-size="13" font-weight="400" fill="#5b6168" text-anchor="start">render as blocks</text>
+<rect x="30" y="222" width="170" height="92" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
+<text x="115.0" y="256.0" font-size="16" font-weight="600" fill="#1f2328" text-anchor="middle">Human intent</text>
+<text x="115.0" y="276.0" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">What the system</text>
+<text x="115.0" y="294.0" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">is for</text>
+<polyline points="200,268 328,268" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="213.5" y="244" width="101.0" height="20" rx="3" fill="#ffffff"/>
+<text x="264" y="258" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">is captured in</text>
+<rect x="330" y="190" width="360" height="156" rx="14" fill="#e8effd" stroke="#2563eb" stroke-width="2.5"/>
+<text x="510" y="240" font-size="24" font-weight="700" fill="#1e3a8a" text-anchor="middle">AIC contract</text>
+<text x="510" y="268" font-size="14" font-weight="400" fill="#5b6168" text-anchor="middle">What must hold, written in YAML:</text>
+<text x="510" y="288" font-size="14" font-weight="400" fill="#5b6168" text-anchor="middle">modules, interfaces, data,</text>
+<text x="510" y="308" font-size="14" font-weight="400" fill="#5b6168" text-anchor="middle">rules, scenarios and deployment</text>
+<rect x="745" y="170" width="225" height="72" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
+<text x="857.5" y="203.0" font-size="16" font-weight="600" fill="#1f2328" text-anchor="middle">Coding agents</text>
+<text x="857.5" y="223.0" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">Implement it</text>
+<polyline points="690,206 743,206" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="698.0" y="183" width="36.0" height="20" rx="3" fill="#ffffff"/>
+<text x="716" y="197" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">read</text>
+<rect x="745" y="300" width="225" height="72" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
+<text x="857.5" y="342.0" font-size="16" font-weight="600" fill="#1f2328" text-anchor="middle">Code and infrastructure</text>
+<polyline points="857,242 857,298" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="862.0" y="262" width="42.5" height="20" rx="3" fill="#ffffff"/>
+<text x="867" y="276" font-size="13" font-weight="400" fill="#5b6168" text-anchor="start">write</text>
+<rect x="480" y="440" width="300" height="92" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
+<text x="630" y="472" font-size="16" font-weight="600" fill="#1f2328" text-anchor="middle">Verifiers</text>
+<text x="630" y="494" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">Report each violation,</text>
+<text x="630" y="512" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">naming the primitive it breaks</text>
+<polyline points="560,346 560,438" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="469.0" y="384" width="88.0" height="20" rx="3" fill="#ffffff"/>
+<text x="552" y="398" font-size="13" font-weight="400" fill="#5b6168" text-anchor="end">test against</text>
+<polyline points="857,372 857,486 782,486" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="862.0" y="422" width="55.5" height="20" rx="3" fill="#ffffff"/>
+<text x="867" y="436" font-size="13" font-weight="400" fill="#5b6168" text-anchor="start">inspect</text>
+</svg>
