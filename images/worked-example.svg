@@ -2,88 +2,88 @@
 <title id="t">The online shop example</title>
 <desc id="d">Customer app calls Orders API on Order Service. Order Service calls Catalog API and the Payment provider, reads and writes Orders, and publishes to order-placed, which activates Notification Worker. The worker calls the Email provider.</desc>
 <defs>
-<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7d8177"/></marker>
-<marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b9098"/></marker>
+<marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5c9ae8"/></marker>
 </defs>
-<style>text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, 'Noto Sans', sans-serif; fill: #1f2328; }</style>
-<rect width="960" height="838" rx="12" fill="#ffffff"/>
-<rect x="150" y="122" width="660" height="356" rx="12" fill="#f6f6f2" stroke="#9ca09a" stroke-width="1.5" stroke-dasharray="6 5"/>
-<text x="166" y="148" font-size="14" font-weight="600" fill="#5b6168" text-anchor="start">Ordering</text>
-<rect x="270" y="545" width="320" height="169" rx="12" fill="#f6f6f2" stroke="#9ca09a" stroke-width="1.5" stroke-dasharray="6 5"/>
-<text x="286" y="571" font-size="14" font-weight="600" fill="#5b6168" text-anchor="start">Catalog</text>
-<rect x="630" y="545" width="300" height="169" rx="12" fill="#f6f6f2" stroke="#9ca09a" stroke-width="1.5" stroke-dasharray="6 5"/>
-<text x="646" y="571" font-size="14" font-weight="600" fill="#5b6168" text-anchor="start">Notifications</text>
-<polyline points="450,84 450,168" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="457.0" y="98" width="42.5" height="20" rx="3" fill="#ffffff"/>
-<text x="462" y="112" font-size="13" font-weight="400" fill="#5b6168" text-anchor="start">calls</text>
-<polyline points="345,240 90,240 90,588" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="68.8" y="406" width="42.5" height="20" rx="3" fill="#ffffff"/>
-<text x="90" y="420" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">calls</text>
-<polyline points="430,304 430,570" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="408.8" y="502" width="42.5" height="20" rx="3" fill="#ffffff"/>
-<text x="430" y="516" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">calls</text>
-<polyline points="395,304 292,370" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="242.5" y="314" width="94.5" height="20" rx="3" fill="#ffffff"/>
-<text x="332" y="328" font-size="13" font-weight="400" fill="#5b6168" text-anchor="end">reads, writes</text>
-<polyline points="520,304 612,360" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="579.0" y="310" width="68.5" height="20" rx="3" fill="#ffffff"/>
-<text x="584" y="324" font-size="13" font-weight="400" fill="#5b6168" text-anchor="start">publishes</text>
-<polyline points="620,438 620,510 780,510 780,588" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#a)"/>
-<rect x="665.8" y="501" width="68.5" height="20" rx="3" fill="#ffffff"/>
-<text x="700" y="515" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">activates</text>
-<polyline points="780,694 780,751" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="787.0" y="724" width="42.5" height="20" rx="3" fill="#ffffff"/>
-<text x="792" y="738" font-size="13" font-weight="400" fill="#5b6168" text-anchor="start">calls</text>
-<rect x="350" y="18" width="200" height="66" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
-<rect x="362.0" y="28" width="71.6" height="21" rx="10.5" fill="#fbe2eb" stroke="#d63f74" stroke-width="1.2"/>
-<text x="397.8" y="43" font-size="12" font-weight="500" fill="#b02a5c" text-anchor="middle">External</text>
-<text x="364" y="70" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">Customer app</text>
-<rect x="370.6" y="170" width="158.7" height="21" rx="10.5" fill="#dce8fa" stroke="#2f76d8" stroke-width="1.2"/>
-<text x="450.0" y="185" font-size="12" font-weight="500" fill="#1e5bb0" text-anchor="middle">Interface: Orders API</text>
-<rect x="345" y="194" width="210" height="110" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
-<rect x="357.0" y="204" width="58.2" height="21" rx="10.5" fill="#fde8dc" stroke="#e8622c" stroke-width="1.2"/>
-<text x="386.1" y="219" font-size="12" font-weight="500" fill="#b5481b" text-anchor="middle">Module</text>
-<text x="359" y="246" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">Order Service</text>
-<text x="359" y="265" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">Prices and places orders,</text>
-<text x="359" y="282" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">and charges the customer</text>
-<path d="M180 384 A105.0 12 0 0 1 390 384 V448 A105.0 12 0 0 1 180 448 Z" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
-<path d="M180 384 A105.0 12 0 0 0 390 384" fill="none" stroke="#d9dbd4" stroke-width="1.5"/>
-<rect x="194.0" y="400" width="51.5" height="21" rx="10.5" fill="#dcf3ea" stroke="#2a9d78" stroke-width="1.2"/>
-<text x="219.75" y="415" font-size="12" font-weight="500" fill="#1b7a5c" text-anchor="middle">Store</text>
-<text x="252" y="416" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">Orders</text>
-<text x="194" y="442" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">Owned by Order Service</text>
-<path d="M572 362 H768 A12 38.0 0 0 1 768 438 H572 A12 38.0 0 0 1 572 362 Z" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
-<path d="M768 362 A12 38.0 0 0 0 768 438" fill="none" stroke="#d9dbd4" stroke-width="1.5"/>
-<rect x="576.0" y="372" width="64.9" height="21" rx="10.5" fill="#dfe5ee" stroke="#2a3f5f" stroke-width="1.2"/>
-<text x="608.45" y="387" font-size="12" font-weight="500" fill="#2a3f5f" text-anchor="middle">Channel</text>
-<text x="654" y="388" font-size="14" font-weight="600" fill="#1f2328" text-anchor="start">order-placed</text>
-<text x="576" y="418" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">Carries OrderPlaced</text>
-<rect x="24" y="590" width="220" height="66" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
-<rect x="36.0" y="600" width="71.6" height="21" rx="10.5" fill="#fbe2eb" stroke="#d63f74" stroke-width="1.2"/>
-<text x="71.8" y="615" font-size="12" font-weight="500" fill="#b02a5c" text-anchor="middle">External</text>
-<text x="38" y="642" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">Payment provider</text>
-<rect x="310" y="590" width="240" height="104" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
-<rect x="322.0" y="600" width="58.2" height="21" rx="10.5" fill="#fde8dc" stroke="#e8622c" stroke-width="1.2"/>
-<text x="351.1" y="615" font-size="12" font-weight="500" fill="#b5481b" text-anchor="middle">Module</text>
-<text x="324" y="642" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">Catalog Service</text>
-<text x="324" y="661" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">Answers what a product is</text>
-<text x="324" y="678" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">and what it costs</text>
-<rect x="347.3" y="571" width="165.4" height="21" rx="10.5" fill="#dce8fa" stroke="#2f76d8" stroke-width="1.2"/>
-<text x="430.0" y="586" font-size="12" font-weight="500" fill="#1e5bb0" text-anchor="middle">Interface: Catalog API</text>
-<rect x="660" y="590" width="240" height="104" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
-<rect x="672.0" y="600" width="58.2" height="21" rx="10.5" fill="#fde8dc" stroke="#e8622c" stroke-width="1.2"/>
-<text x="701.1" y="615" font-size="12" font-weight="500" fill="#b5481b" text-anchor="middle">Module</text>
-<text x="674" y="642" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">Notification Worker</text>
-<text x="674" y="661" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">Sends the confirmation email</text>
-<text x="674" y="678" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">for each placed order</text>
-<rect x="680" y="753" width="200" height="66" rx="10" fill="#ffffff" stroke="#d9dbd4" stroke-width="1.5"/>
-<rect x="692.0" y="763" width="71.6" height="21" rx="10.5" fill="#fbe2eb" stroke="#d63f74" stroke-width="1.2"/>
-<text x="727.8" y="778" font-size="12" font-weight="500" fill="#b02a5c" text-anchor="middle">External</text>
-<text x="694" y="805" font-size="15" font-weight="600" fill="#1f2328" text-anchor="start">Email provider</text>
-<polyline points="30,745 84,745" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<text x="94" y="750" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">Dependency</text>
-<polyline points="30,771 84,771" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#a)"/>
-<text x="94" y="776" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">Activation by a Channel</text>
-<rect x="30" y="788" width="54" height="22" rx="5" fill="#f6f6f2" stroke="#9ca09a" stroke-width="1.5" stroke-dasharray="6 5"/>
-<text x="94" y="804" font-size="12.5" font-weight="400" fill="#5b6168" text-anchor="start">Boundary</text>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, 'Noto Sans', sans-serif; fill: #e6e8eb; }</style>
+<rect width="960" height="838" rx="12" fill="#14161a"/>
+<rect x="150" y="122" width="660" height="356" rx="12" fill="#1a1c21" stroke="#5a5f67" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="166" y="148" font-size="14" font-weight="600" fill="#aeb4bb" text-anchor="start">Ordering</text>
+<rect x="270" y="545" width="320" height="169" rx="12" fill="#1a1c21" stroke="#5a5f67" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="286" y="571" font-size="14" font-weight="600" fill="#aeb4bb" text-anchor="start">Catalog</text>
+<rect x="630" y="545" width="300" height="169" rx="12" fill="#1a1c21" stroke="#5a5f67" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="646" y="571" font-size="14" font-weight="600" fill="#aeb4bb" text-anchor="start">Notifications</text>
+<polyline points="450,84 450,168" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="457.0" y="98" width="42.5" height="20" rx="3" fill="#14161a"/>
+<text x="462" y="112" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="start">calls</text>
+<polyline points="345,240 90,240 90,588" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="68.8" y="406" width="42.5" height="20" rx="3" fill="#14161a"/>
+<text x="90" y="420" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="middle">calls</text>
+<polyline points="430,304 430,570" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="408.8" y="502" width="42.5" height="20" rx="3" fill="#14161a"/>
+<text x="430" y="516" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="middle">calls</text>
+<polyline points="395,304 292,370" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="242.5" y="314" width="94.5" height="20" rx="3" fill="#1a1c21"/>
+<text x="332" y="328" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="end">reads, writes</text>
+<polyline points="520,304 612,360" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="579.0" y="310" width="68.5" height="20" rx="3" fill="#1a1c21"/>
+<text x="584" y="324" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="start">publishes</text>
+<polyline points="620,438 620,510 780,510 780,588" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#a)"/>
+<rect x="665.8" y="501" width="68.5" height="20" rx="3" fill="#14161a"/>
+<text x="700" y="515" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="middle">activates</text>
+<polyline points="780,694 780,751" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="787.0" y="724" width="42.5" height="20" rx="3" fill="#14161a"/>
+<text x="792" y="738" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="start">calls</text>
+<rect x="350" y="18" width="200" height="66" rx="10" fill="#1e2126" stroke="#4a4f57" stroke-width="1.5"/>
+<rect x="362.0" y="28" width="71.6" height="21" rx="10.5" fill="#3d1c2b" stroke="#ec6a98" stroke-width="1.2"/>
+<text x="397.8" y="43" font-size="12" font-weight="500" fill="#f7a8c4" text-anchor="middle">External</text>
+<text x="364" y="70" font-size="15" font-weight="600" fill="#e6e8eb" text-anchor="start">Customer app</text>
+<rect x="370.6" y="170" width="158.7" height="21" rx="10.5" fill="#1b2c46" stroke="#5c9ae8" stroke-width="1.2"/>
+<text x="450.0" y="185" font-size="12" font-weight="500" fill="#a9ccf7" text-anchor="middle">Interface: Orders API</text>
+<rect x="345" y="194" width="210" height="110" rx="10" fill="#1e2126" stroke="#4a4f57" stroke-width="1.5"/>
+<rect x="357.0" y="204" width="58.2" height="21" rx="10.5" fill="#3d2417" stroke="#f0814f" stroke-width="1.2"/>
+<text x="386.1" y="219" font-size="12" font-weight="500" fill="#ffb08a" text-anchor="middle">Module</text>
+<text x="359" y="246" font-size="15" font-weight="600" fill="#e6e8eb" text-anchor="start">Order Service</text>
+<text x="359" y="265" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">Prices and places orders,</text>
+<text x="359" y="282" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">and charges the customer</text>
+<path d="M180 384 A105.0 12 0 0 1 390 384 V448 A105.0 12 0 0 1 180 448 Z" fill="#1e2126" stroke="#4a4f57" stroke-width="1.5"/>
+<path d="M180 384 A105.0 12 0 0 0 390 384" fill="none" stroke="#4a4f57" stroke-width="1.5"/>
+<rect x="194.0" y="400" width="51.5" height="21" rx="10.5" fill="#15332a" stroke="#3fbf97" stroke-width="1.2"/>
+<text x="219.75" y="415" font-size="12" font-weight="500" fill="#8fe3c5" text-anchor="middle">Store</text>
+<text x="252" y="416" font-size="15" font-weight="600" fill="#e6e8eb" text-anchor="start">Orders</text>
+<text x="194" y="442" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">Owned by Order Service</text>
+<path d="M572 362 H768 A12 38.0 0 0 1 768 438 H572 A12 38.0 0 0 1 572 362 Z" fill="#1e2126" stroke="#4a4f57" stroke-width="1.5"/>
+<path d="M768 362 A12 38.0 0 0 0 768 438" fill="none" stroke="#4a4f57" stroke-width="1.5"/>
+<rect x="576.0" y="372" width="64.9" height="21" rx="10.5" fill="#242e3f" stroke="#8ea3c4" stroke-width="1.2"/>
+<text x="608.45" y="387" font-size="12" font-weight="500" fill="#c3d0e4" text-anchor="middle">Channel</text>
+<text x="654" y="388" font-size="14" font-weight="600" fill="#e6e8eb" text-anchor="start">order-placed</text>
+<text x="576" y="418" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">Carries OrderPlaced</text>
+<rect x="24" y="590" width="220" height="66" rx="10" fill="#1e2126" stroke="#4a4f57" stroke-width="1.5"/>
+<rect x="36.0" y="600" width="71.6" height="21" rx="10.5" fill="#3d1c2b" stroke="#ec6a98" stroke-width="1.2"/>
+<text x="71.8" y="615" font-size="12" font-weight="500" fill="#f7a8c4" text-anchor="middle">External</text>
+<text x="38" y="642" font-size="15" font-weight="600" fill="#e6e8eb" text-anchor="start">Payment provider</text>
+<rect x="310" y="590" width="240" height="104" rx="10" fill="#1e2126" stroke="#4a4f57" stroke-width="1.5"/>
+<rect x="322.0" y="600" width="58.2" height="21" rx="10.5" fill="#3d2417" stroke="#f0814f" stroke-width="1.2"/>
+<text x="351.1" y="615" font-size="12" font-weight="500" fill="#ffb08a" text-anchor="middle">Module</text>
+<text x="324" y="642" font-size="15" font-weight="600" fill="#e6e8eb" text-anchor="start">Catalog Service</text>
+<text x="324" y="661" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">Answers what a product is</text>
+<text x="324" y="678" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">and what it costs</text>
+<rect x="347.3" y="571" width="165.4" height="21" rx="10.5" fill="#1b2c46" stroke="#5c9ae8" stroke-width="1.2"/>
+<text x="430.0" y="586" font-size="12" font-weight="500" fill="#a9ccf7" text-anchor="middle">Interface: Catalog API</text>
+<rect x="660" y="590" width="240" height="104" rx="10" fill="#1e2126" stroke="#4a4f57" stroke-width="1.5"/>
+<rect x="672.0" y="600" width="58.2" height="21" rx="10.5" fill="#3d2417" stroke="#f0814f" stroke-width="1.2"/>
+<text x="701.1" y="615" font-size="12" font-weight="500" fill="#ffb08a" text-anchor="middle">Module</text>
+<text x="674" y="642" font-size="15" font-weight="600" fill="#e6e8eb" text-anchor="start">Notification Worker</text>
+<text x="674" y="661" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">Sends the confirmation email</text>
+<text x="674" y="678" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">for each placed order</text>
+<rect x="680" y="753" width="200" height="66" rx="10" fill="#1e2126" stroke="#4a4f57" stroke-width="1.5"/>
+<rect x="692.0" y="763" width="71.6" height="21" rx="10.5" fill="#3d1c2b" stroke="#ec6a98" stroke-width="1.2"/>
+<text x="727.8" y="778" font-size="12" font-weight="500" fill="#f7a8c4" text-anchor="middle">External</text>
+<text x="694" y="805" font-size="15" font-weight="600" fill="#e6e8eb" text-anchor="start">Email provider</text>
+<polyline points="30,745 84,745" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="94" y="750" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">Dependency</text>
+<polyline points="30,771 84,771" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#a)"/>
+<text x="94" y="776" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">Activation by a Channel</text>
+<rect x="30" y="788" width="54" height="22" rx="5" fill="#1a1c21" stroke="#5a5f67" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="94" y="804" font-size="12.5" font-weight="400" fill="#aeb4bb" text-anchor="start">Boundary</text>
 </svg>

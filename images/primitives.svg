@@ -2,79 +2,79 @@
 <title id="t">How the AIC primitives relate</title>
 <desc id="d">Intent guides structure and interaction. Governance applies across them. Structure is realised by Deployment Units and Bindings.</desc>
 <defs>
-<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7d8177"/></marker>
-<marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b9098"/></marker>
+<marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5c9ae8"/></marker>
 </defs>
-<style>text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, 'Noto Sans', sans-serif; fill: #1f2328; }</style>
-<rect width="1000" height="648" rx="12" fill="#ffffff"/>
-<rect x="20" y="18" width="960" height="92" rx="12" fill="#efe8fd" stroke="#7c3aed" stroke-width="1.2"/>
-<rect x="20" y="18" width="960" height="92" rx="12" fill="#ffffff" fill-opacity="0.55"/>
-<text x="36" y="44" font-size="14" font-weight="700" fill="#5b21b6" text-anchor="start">Intent</text>
-<rect x="250" y="40" width="150" height="50" rx="9" fill="#ffffff" stroke="#7c3aed" stroke-width="1.6"/>
-<text x="325.0" y="70.0" font-size="14" font-weight="600" fill="#5b21b6" text-anchor="middle">System</text>
-<rect x="430" y="40" width="150" height="50" rx="9" fill="#ffffff" stroke="#7c3aed" stroke-width="1.6"/>
-<text x="505.0" y="70.0" font-size="14" font-weight="600" fill="#5b21b6" text-anchor="middle">Scenario</text>
-<rect x="610" y="40" width="150" height="50" rx="9" fill="#ffffff" stroke="#7c3aed" stroke-width="1.6"/>
-<text x="685.0" y="70.0" font-size="14" font-weight="600" fill="#5b21b6" text-anchor="middle">Decision</text>
-<polyline points="390,110 390,146" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="397.0" y="120" width="49.0" height="20" rx="3" fill="#ffffff"/>
-<text x="402" y="134" font-size="13" font-weight="400" fill="#5b6168" text-anchor="start">guides</text>
-<rect x="20" y="148" width="760" height="368" rx="12" fill="#fde8dc" stroke="#e8622c" stroke-width="1.2"/>
-<rect x="20" y="148" width="760" height="368" rx="12" fill="#ffffff" fill-opacity="0.55"/>
-<text x="36" y="174" font-size="14" font-weight="700" fill="#b5481b" text-anchor="start">Structure and interaction</text>
-<rect x="60" y="300" width="130" height="56" rx="9" fill="#ffffff" stroke="#e8622c" stroke-width="1.6"/>
-<text x="125.0" y="333.0" font-size="14" font-weight="600" fill="#b5481b" text-anchor="middle">Module</text>
-<rect x="270" y="300" width="130" height="56" rx="9" fill="#ffffff" stroke="#2f76d8" stroke-width="1.6"/>
-<text x="335.0" y="333.0" font-size="14" font-weight="600" fill="#1e5bb0" text-anchor="middle">Dependency</text>
-<rect x="480" y="186" width="130" height="52" rx="9" fill="#ffffff" stroke="#2f76d8" stroke-width="1.6"/>
-<text x="545.0" y="217.0" font-size="14" font-weight="600" fill="#1e5bb0" text-anchor="middle">Interface</text>
-<rect x="480" y="268" width="130" height="52" rx="9" fill="#ffffff" stroke="#2a9d78" stroke-width="1.6"/>
-<text x="545.0" y="299.0" font-size="14" font-weight="600" fill="#1b7a5c" text-anchor="middle">Store</text>
-<rect x="480" y="350" width="130" height="52" rx="9" fill="#ffffff" stroke="#2a3f5f" stroke-width="1.6"/>
-<text x="545.0" y="381.0" font-size="14" font-weight="600" fill="#2a3f5f" text-anchor="middle">Channel</text>
-<rect x="480" y="432" width="130" height="52" rx="9" fill="#ffffff" stroke="#d63f74" stroke-width="1.6"/>
-<text x="545.0" y="463.0" font-size="14" font-weight="600" fill="#b02a5c" text-anchor="middle">External</text>
-<polyline points="125,300 125,202 478,202" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="255.5" y="184" width="49.0" height="20" rx="3" fill="#ffffff"/>
-<text x="280" y="198" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">offers</text>
-<polyline points="190,328 268,328" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="198.0" y="305" width="62.0" height="20" rx="3" fill="#ffffff"/>
-<text x="229" y="319" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">declares</text>
-<polyline points="400,328 478,228" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<polyline points="400,328 478,294.0" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<polyline points="400,328 478,368.0" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<polyline points="400,328 478,458.0" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="410.0" y="282" width="36.0" height="20" rx="3" fill="#ffffff"/>
-<text x="428" y="296" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">uses</text>
-<polyline points="480,392 125,392 125,358" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#a)"/>
-<rect x="265.8" y="383" width="68.5" height="20" rx="3" fill="#ffffff"/>
-<text x="300" y="397" font-size="13" font-weight="400" fill="#5b6168" text-anchor="middle">activates</text>
-<rect x="650" y="294" width="110" height="52" rx="9" fill="#ffffff" stroke="#2f76d8" stroke-width="1.6"/>
-<text x="705.0" y="325.0" font-size="14" font-weight="600" fill="#1e5bb0" text-anchor="middle">Type</text>
-<polyline points="690,294 612,226" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="2 4" marker-end="url(#a)"/>
-<polyline points="650,320 612,298" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="2 4" marker-end="url(#a)"/>
-<polyline points="690,346 612,376" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="2 4" marker-end="url(#a)"/>
-<text x="705" y="258" font-size="12" font-weight="400" fill="#5b6168" text-anchor="middle">describes</text>
-<text x="705" y="272" font-size="12" font-weight="400" fill="#5b6168" text-anchor="middle">what travels</text>
-<text x="705" y="372" font-size="12" font-weight="400" fill="#5b6168" text-anchor="middle">or is held</text>
-<rect x="810" y="148" width="170" height="368" rx="12" fill="#eeeeea" stroke="#6b7280" stroke-width="1.2"/>
-<rect x="810" y="148" width="170" height="368" rx="12" fill="#ffffff" fill-opacity="0.55"/>
-<text x="826" y="174" font-size="14" font-weight="700" fill="#4b5563" text-anchor="start">Governance</text>
-<rect x="830" y="250" width="130" height="56" rx="9" fill="#ffffff" stroke="#6b7280" stroke-width="1.6"/>
-<text x="895.0" y="283.0" font-size="14" font-weight="600" fill="#4b5563" text-anchor="middle">Boundary</text>
-<rect x="830" y="340" width="130" height="56" rx="9" fill="#ffffff" stroke="#6b7280" stroke-width="1.6"/>
-<text x="895.0" y="373.0" font-size="14" font-weight="600" fill="#4b5563" text-anchor="middle">Constraint</text>
-<polyline points="810,330 782,330" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<text x="895" y="208" font-size="12" font-weight="400" fill="#5b6168" text-anchor="middle">Apply across the</text>
-<text x="895" y="224" font-size="12" font-weight="400" fill="#5b6168" text-anchor="middle">whole structure</text>
-<polyline points="390,516 390,552" fill="none" stroke="#7d8177" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
-<rect x="397.0" y="526" width="101.0" height="20" rx="3" fill="#ffffff"/>
-<text x="402" y="540" font-size="13" font-weight="400" fill="#5b6168" text-anchor="start">is realised by</text>
-<rect x="20" y="554" width="960" height="76" rx="12" fill="#fef6d8" stroke="#ca8a04" stroke-width="1.2"/>
-<rect x="20" y="554" width="960" height="76" rx="12" fill="#ffffff" fill-opacity="0.55"/>
-<text x="36" y="580" font-size="14" font-weight="700" fill="#854d0e" text-anchor="start">Realisation</text>
-<rect x="300" y="568" width="170" height="48" rx="9" fill="#ffffff" stroke="#ca8a04" stroke-width="1.6"/>
-<text x="385.0" y="597.0" font-size="14" font-weight="600" fill="#854d0e" text-anchor="middle">Deployment Unit</text>
-<rect x="510" y="568" width="170" height="48" rx="9" fill="#ffffff" stroke="#ca8a04" stroke-width="1.6"/>
-<text x="595.0" y="597.0" font-size="14" font-weight="600" fill="#854d0e" text-anchor="middle">Binding</text>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, 'Noto Sans', sans-serif; fill: #e6e8eb; }</style>
+<rect width="1000" height="648" rx="12" fill="#14161a"/>
+<rect x="20" y="18" width="960" height="92" rx="12" fill="#2a2140" stroke="#a37bf5" stroke-width="1.2"/>
+<rect x="20" y="18" width="960" height="92" rx="12" fill="#14161a" fill-opacity="0.55"/>
+<text x="36" y="44" font-size="14" font-weight="700" fill="#c9b3fa" text-anchor="start">Intent</text>
+<rect x="250" y="40" width="150" height="50" rx="9" fill="#1e2126" stroke="#a37bf5" stroke-width="1.6"/>
+<text x="325.0" y="70.0" font-size="14" font-weight="600" fill="#c9b3fa" text-anchor="middle">System</text>
+<rect x="430" y="40" width="150" height="50" rx="9" fill="#1e2126" stroke="#a37bf5" stroke-width="1.6"/>
+<text x="505.0" y="70.0" font-size="14" font-weight="600" fill="#c9b3fa" text-anchor="middle">Scenario</text>
+<rect x="610" y="40" width="150" height="50" rx="9" fill="#1e2126" stroke="#a37bf5" stroke-width="1.6"/>
+<text x="685.0" y="70.0" font-size="14" font-weight="600" fill="#c9b3fa" text-anchor="middle">Decision</text>
+<polyline points="390,110 390,146" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="397.0" y="120" width="49.0" height="20" rx="3" fill="#14161a"/>
+<text x="402" y="134" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="start">guides</text>
+<rect x="20" y="148" width="760" height="368" rx="12" fill="#3d2417" stroke="#f0814f" stroke-width="1.2"/>
+<rect x="20" y="148" width="760" height="368" rx="12" fill="#14161a" fill-opacity="0.55"/>
+<text x="36" y="174" font-size="14" font-weight="700" fill="#ffb08a" text-anchor="start">Structure and interaction</text>
+<rect x="60" y="300" width="130" height="56" rx="9" fill="#1e2126" stroke="#f0814f" stroke-width="1.6"/>
+<text x="125.0" y="333.0" font-size="14" font-weight="600" fill="#ffb08a" text-anchor="middle">Module</text>
+<rect x="270" y="300" width="130" height="56" rx="9" fill="#1e2126" stroke="#5c9ae8" stroke-width="1.6"/>
+<text x="335.0" y="333.0" font-size="14" font-weight="600" fill="#a9ccf7" text-anchor="middle">Dependency</text>
+<rect x="480" y="186" width="130" height="52" rx="9" fill="#1e2126" stroke="#5c9ae8" stroke-width="1.6"/>
+<text x="545.0" y="217.0" font-size="14" font-weight="600" fill="#a9ccf7" text-anchor="middle">Interface</text>
+<rect x="480" y="268" width="130" height="52" rx="9" fill="#1e2126" stroke="#3fbf97" stroke-width="1.6"/>
+<text x="545.0" y="299.0" font-size="14" font-weight="600" fill="#8fe3c5" text-anchor="middle">Store</text>
+<rect x="480" y="350" width="130" height="52" rx="9" fill="#1e2126" stroke="#8ea3c4" stroke-width="1.6"/>
+<text x="545.0" y="381.0" font-size="14" font-weight="600" fill="#c3d0e4" text-anchor="middle">Channel</text>
+<rect x="480" y="432" width="130" height="52" rx="9" fill="#1e2126" stroke="#ec6a98" stroke-width="1.6"/>
+<text x="545.0" y="463.0" font-size="14" font-weight="600" fill="#f7a8c4" text-anchor="middle">External</text>
+<polyline points="125,300 125,202 478,202" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="255.5" y="184" width="49.0" height="20" rx="3" fill="#261c19"/>
+<text x="280" y="198" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="middle">offers</text>
+<polyline points="190,328 268,328" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="198.0" y="305" width="62.0" height="20" rx="3" fill="#261c19"/>
+<text x="229" y="319" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="middle">declares</text>
+<polyline points="400,328 478,228" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="400,328 478,294.0" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="400,328 478,368.0" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="400,328 478,458.0" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="410.0" y="282" width="36.0" height="20" rx="3" fill="#261c19"/>
+<text x="428" y="296" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="middle">uses</text>
+<polyline points="480,392 125,392 125,358" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#a)"/>
+<rect x="265.8" y="383" width="68.5" height="20" rx="3" fill="#261c19"/>
+<text x="300" y="397" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="middle">activates</text>
+<rect x="650" y="294" width="110" height="52" rx="9" fill="#1e2126" stroke="#5c9ae8" stroke-width="1.6"/>
+<text x="705.0" y="325.0" font-size="14" font-weight="600" fill="#a9ccf7" text-anchor="middle">Type</text>
+<polyline points="690,294 612,226" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="2 4" marker-end="url(#a)"/>
+<polyline points="650,320 612,298" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="2 4" marker-end="url(#a)"/>
+<polyline points="690,346 612,376" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="2 4" marker-end="url(#a)"/>
+<text x="705" y="258" font-size="12" font-weight="400" fill="#aeb4bb" text-anchor="middle">describes</text>
+<text x="705" y="272" font-size="12" font-weight="400" fill="#aeb4bb" text-anchor="middle">what travels</text>
+<text x="705" y="372" font-size="12" font-weight="400" fill="#aeb4bb" text-anchor="middle">or is held</text>
+<rect x="810" y="148" width="170" height="368" rx="12" fill="#2a2d33" stroke="#8d949e" stroke-width="1.2"/>
+<rect x="810" y="148" width="170" height="368" rx="12" fill="#14161a" fill-opacity="0.55"/>
+<text x="826" y="174" font-size="14" font-weight="700" fill="#c5c9ce" text-anchor="start">Governance</text>
+<rect x="830" y="250" width="130" height="56" rx="9" fill="#1e2126" stroke="#8d949e" stroke-width="1.6"/>
+<text x="895.0" y="283.0" font-size="14" font-weight="600" fill="#c5c9ce" text-anchor="middle">Boundary</text>
+<rect x="830" y="340" width="130" height="56" rx="9" fill="#1e2126" stroke="#8d949e" stroke-width="1.6"/>
+<text x="895.0" y="373.0" font-size="14" font-weight="600" fill="#c5c9ce" text-anchor="middle">Constraint</text>
+<polyline points="810,330 782,330" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="895" y="208" font-size="12" font-weight="400" fill="#aeb4bb" text-anchor="middle">Apply across the</text>
+<text x="895" y="224" font-size="12" font-weight="400" fill="#aeb4bb" text-anchor="middle">whole structure</text>
+<polyline points="390,516 390,552" fill="none" stroke="#8b9098" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="397.0" y="526" width="101.0" height="20" rx="3" fill="#14161a"/>
+<text x="402" y="540" font-size="13" font-weight="400" fill="#aeb4bb" text-anchor="start">is realised by</text>
+<rect x="20" y="554" width="960" height="76" rx="12" fill="#33291a" stroke="#e0a030" stroke-width="1.2"/>
+<rect x="20" y="554" width="960" height="76" rx="12" fill="#14161a" fill-opacity="0.55"/>
+<text x="36" y="580" font-size="14" font-weight="700" fill="#f0c674" text-anchor="start">Realisation</text>
+<rect x="300" y="568" width="170" height="48" rx="9" fill="#1e2126" stroke="#e0a030" stroke-width="1.6"/>
+<text x="385.0" y="597.0" font-size="14" font-weight="600" fill="#f0c674" text-anchor="middle">Deployment Unit</text>
+<rect x="510" y="568" width="170" height="48" rx="9" fill="#1e2126" stroke="#e0a030" stroke-width="1.6"/>
+<text x="595.0" y="597.0" font-size="14" font-weight="600" fill="#f0c674" text-anchor="middle">Binding</text>
 </svg>
