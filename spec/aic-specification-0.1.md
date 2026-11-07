@@ -28,18 +28,7 @@ An agent working from these sources can produce code that passes its tests and s
 
 An AIC contract is a set of architectural commitments that an implementation can honour or break. That property separates a contract from a diagram: a violation can be detected.
 
-```mermaid
-flowchart TB
-  intent["Human statement of intent"]
-  contract["AIC contract"]
-  code["Code and infrastructure"]
-  intent --> contract --> code
-
-  architects["Architects"] -- "write, review and approve" --> contract
-  tools["Design tools"] -- "render as blocks" --> contract
-  agents["Coding agents"] -- "implement" --> contract
-  verifiers["Verifiers"] -- "test the result against" --> contract
-```
+![Architects and design tools work on the AIC contract, human intent is captured in it, coding agents read it and write code, and verifiers test the code against it](../images/aic-in-context.svg)
 
 *Where the layer sits and who consumes it.*
 
@@ -87,37 +76,7 @@ The model has 14 primitives in five families. A concept becomes a primitive only
 
 API, logic, event and database are all covered, but each by the primitive that matches what it is: an API is an Interface, logic lives in a Module, an event travels on a Channel and a database is a Store. They are not interchangeable blocks of one kind, so a new pattern such as a cache or a webhook maps onto existing primitives instead of requiring a new block type.
 
-```mermaid
-flowchart TB
-  subgraph intent["Intent"]
-    System
-    Scenario
-    Decision
-  end
-  subgraph structure["Structure and interaction"]
-    Module -- "offers" --> Interface
-    Module -- "declares" --> Dependency
-    Dependency -- "uses" --> Interface
-    Dependency -- "uses" --> Store
-    Dependency -- "uses" --> Channel
-    Dependency -- "uses" --> External
-    Channel -- "activates" --> Module
-    Type -. "describes what travels on" .-> Interface
-    Type -. "describes what travels on" .-> Channel
-    Type -. "describes what is held in" .-> Store
-  end
-  subgraph governance["Governance"]
-    Boundary
-    Constraint
-  end
-  subgraph realisation["Realisation"]
-    DU["Deployment Unit"]
-    Binding
-  end
-  intent --> structure
-  governance --> structure
-  structure --> realisation
-```
+![Intent guides structure and interaction, Boundaries and Constraints apply across the structure, and Deployment Units and Bindings realise it](../images/primitives.svg)
 
 *How the primitives relate.*
 
@@ -211,40 +170,7 @@ Contracts change, and the unit of change is a difference between versions, expre
 
 This example uses the most familiar backend there is: an online shop's order service. Customers place orders through an API, payment goes to a third-party provider, and a confirmation email is sent in the background.
 
-```mermaid
-flowchart TB
-  customer(["Customer app<br/><i>External</i>"])
-  payment(["Payment provider<br/><i>External</i>"])
-  email(["Email provider<br/><i>External</i>"])
-
-  subgraph ordering["Ordering"]
-    ordersApi{{"Interface: Orders API"}}
-    orderService["Order Service<br/><i>Module</i>"]
-    orders[("Orders<br/><i>Store</i>")]
-    orderPlaced[/"order-placed<br/><i>Channel</i>"/]
-    ordersApi --- orderService
-  end
-  subgraph catalog["Catalog"]
-    catalogApi{{"Interface: Catalog API"}}
-    catalogService["Catalog Service<br/><i>Module</i>"]
-    catalogApi --- catalogService
-  end
-  subgraph notifications["Notifications"]
-    worker["Notification Worker<br/><i>Module</i>"]
-  end
-
-  customer -- "calls" --> ordersApi
-  orderService -- "calls" --> catalogApi
-  orderService -- "calls" --> payment
-  orderService -- "reads, writes" --> orders
-  orderService -- "publishes" --> orderPlaced
-  orderPlaced -. "activates" .-> worker
-  worker -- "calls" --> email
-
-  style ordering stroke-dasharray: 5 5
-  style catalog stroke-dasharray: 5 5
-  style notifications stroke-dasharray: 5 5
-```
+![The online shop: Customer app calls Order Service, which uses Orders, order-placed, Catalog Service and the Payment provider, and order-placed activates Notification Worker, which calls the Email provider](../images/worked-example.svg)
 
 *The example system: 3 Boundaries, 3 Modules, 2 Interfaces, 1 Channel, 1 Store, 3 Externals.*
 
