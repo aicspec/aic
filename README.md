@@ -56,7 +56,7 @@ The contract fixes what an architect would want to be consulted about if it chan
 
 These screenshots use the [online shop example](examples/online-shop.aic.yaml): customers place orders through an API, payment goes to a third-party provider, and a confirmation email is sent in the background.
 
-They come from an AIC canvas that is still in development and is not published yet. AIC does not depend on it: any tool can render a contract in its own way.
+They come from the free live editor at [aicspec.dev/editor](https://aicspec.dev/editor/), which runs in the browser with no account. AIC does not depend on it: any tool can render a contract in its own way.
 
 ### A scenario traces a path through the structure
 
@@ -177,12 +177,13 @@ The same logic is also available as a library: `import { validateContract, modul
 
 Version 0.1 is a working draft, so the format may still change.
 
-| Available in this repository | Not available yet |
+| Available | Not available yet |
 | --- | --- |
-| The specification | A verifier that checks code against a contract |
-| The JSON Schema and the contract reference | A published canvas |
-| Two example contracts | |
-| The `@aicspec/cli` command line and the `aic` skill for coding agents | |
+| The specification, in this repository | A verifier that checks code against a contract |
+| The JSON Schema and the contract reference, in this repository | |
+| Two example contracts, in this repository | |
+| The `@aicspec/cli` command line and the `aic` skill for coding agents, in this repository | |
+| A live editor and a public MCP server, at [aicspec.dev](https://aicspec.dev) | |
 
 ## Read next
 
