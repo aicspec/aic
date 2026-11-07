@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "module": "NodeNext", "moduleResolution": "NodeNext", "lib": ["ES2023"],
+    "strict": true, "noImplicitAny": false, "skipLibCheck": true, "noEmit": true,
+    "allowImportingTsExtensions": true, "rewriteRelativeImportExtensions": true, "resolveJsonModule": true,
+    "erasableSyntaxOnly": true, "verbatimModuleSyntax": true, "types": ["node"]
+  },
+  "include": ["src", "tests"]
+}
