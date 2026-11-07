@@ -142,6 +142,37 @@ The [specification](spec/aic-specification-0.1.md#the-primitives) explains what 
 - **An infrastructure tool.** Deployment Units and Bindings describe what is required, and existing tools realise it.
 - **A development process.** The contract does not prescribe who works in what order.
 
+## Use it with a coding agent
+
+A coding agent can use the tools below to validate a contract, plan the work, take one Module at a time and verify the result. There are two ways to give it these tools, and both give the same results.
+
+| | MCP server | Skill and command line |
+| --- | --- | --- |
+| Set up | `claude mcp add --transport http aic https://aicspec.dev/mcp` | `npx -y @aicspec/cli skill install` |
+| Where it runs | On aicspec.dev. The agent sends the contract with each call, and nothing is stored | On your machine. Nothing is sent anywhere |
+| Needs | An agent that supports MCP | Node.js 20.10 or later |
+
+Then tell your agent: *Implement aic.yaml with the aic skill. Follow it, build one module at a time, and verify each one.* With the MCP server, say "the aic MCP server" instead.
+
+`skill install` copies [`skills/aic`](skills/aic) into `.claude/skills/aic` for Claude Code. Add `--global` to install it in `~/.claude/skills` for all your projects, or `--dir <path>` to install it in another agent's skills directory.
+
+### The command line
+
+The [`@aicspec/cli`](https://www.npmjs.com/package/@aicspec/cli) package works with or without an agent. Each command reads `aic.yaml`, or the only `*.aic.yaml`, from the current directory. Use `--contract <path>` for another file. A contract split into several files with `$ref` is joined first.
+
+```sh
+npx @aicspec/cli validate                 # violations, warnings and maturity; exits 1 on violations, so it fits CI
+npx @aicspec/cli plan                     # the Modules in build order, and what blocks each
+npx @aicspec/cli brief order-service      # one Module's contract as a bounded task
+npx @aicspec/cli checklist order-service  # what an implementation must honour, and how to check it
+npx @aicspec/cli verdict results.json     # the conformance verdict from your checklist results
+npx @aicspec/cli reference specification  # the documents in this repository
+```
+
+Every command except `validate` and `bundle` prints JSON. The verdict rests on the results it is given, and says so: the command line does not inspect code.
+
+The same logic is also available as a library: `import { validateContract, moduleBrief } from '@aicspec/cli'`.
+
 ## Status
 
 Version 0.1 is a working draft, so the format may still change.
@@ -149,8 +180,9 @@ Version 0.1 is a working draft, so the format may still change.
 | Available in this repository | Not available yet |
 | --- | --- |
 | The specification | A verifier that checks code against a contract |
-| The JSON Schema and the contract reference | A published canvas or validator |
+| The JSON Schema and the contract reference | A published canvas |
 | Two example contracts | |
+| The `@aicspec/cli` command line and the `aic` skill for coding agents | |
 
 ## Read next
 
@@ -161,6 +193,7 @@ Version 0.1 is a working draft, so the format may still change.
 | [JSON Schema](schema/aic-contract-0.1.schema.json) | The single definition of the format |
 | [Online shop example](examples/online-shop.aic.yaml) | A complete contract |
 | [Sketch example](examples/sketch.aic.yaml) | The smallest useful contract, a Draft |
+| [The aic skill](skills/aic/SKILL.md) | How a coding agent works with a contract |
 
 ## Author
 

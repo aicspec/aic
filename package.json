@@ -1,0 +1,61 @@
+{
+  "name": "@aicspec/cli",
+  "version": "0.1.0",
+  "description": "Validate, plan, brief and verify AIC architecture contracts from the command line, with a skill for coding agents",
+  "keywords": [
+    "aic",
+    "architecture",
+    "contract",
+    "coding-agent",
+    "skill",
+    "claude-code",
+    "yaml"
+  ],
+  "homepage": "https://aicspec.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aicspec/aic.git"
+  },
+  "bugs": "https://github.com/aicspec/aic/issues",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "aic": "dist/src/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    },
+    "./schema.json": "./schema/aic-contract-0.1.schema.json"
+  },
+  "files": [
+    "dist",
+    "spec",
+    "schema",
+    "examples",
+    "skills"
+  ],
+  "engines": {
+    "node": ">=20.10"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && chmod +x dist/src/cli.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "aic": "node src/cli.ts",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "yaml": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}
