@@ -154,6 +154,11 @@ A coding agent can use the tools below to validate a contract, plan the work, ta
 
 Then tell your agent: *Implement aic.yaml with the aic skill. Follow it, build one module at a time, and verify each one.* With the MCP server, say "the aic MCP server" instead.
 
+No contract yet? The agent can write one, and leave what only you can decide as open Decisions for you to review in the [editor](https://aicspec.dev/editor/):
+
+- For code that already exists: *Write an aic.yaml for this repository with the aic skill. Describe the architecture the code has today, and raise anything that looks accidental as an open decision instead of fixing it.* The result is also a map of the system as it really is.
+- For a new system: *Draft an aic.yaml with the aic skill for the system I describe below. Ask me what you need first, and leave what I have not decided as open decisions.*
+
 `skill install` copies [`skills/aic`](skills/aic) into `.claude/skills/aic` for Claude Code. Add `--global` to install it in `~/.claude/skills` for all your projects, or `--dir <path>` to install it in another agent's skills directory.
 
 ### The command line
