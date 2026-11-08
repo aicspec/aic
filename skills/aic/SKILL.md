@@ -1,6 +1,6 @@
 ---
 name: aic
-description: Read, change, implement and verify an AIC architecture contract (aic.yaml or a file ending in .aic.yaml) with the AIC command line. Use when the repository has an AIC contract, or when the user asks to implement, check or change the architecture such a contract records.
+description: Write, read, change, implement and verify an AIC architecture contract (aic.yaml or a file ending in .aic.yaml) with the AIC command line. Use when the repository has an AIC contract, when the user asks to implement, check or change the architecture such a contract records, or when they ask for a contract, or a map of their architecture, for an existing codebase or a new system.
 ---
 
 # Working with an AIC contract
@@ -9,12 +9,12 @@ AIC (Architecture Implementation Contract) records a system's architecture in a 
 
 An AIC contract fixes what an architect would want to be consulted about if it changed: responsibilities, permitted interactions, data shapes at boundaries, delivery guarantees, failure behaviour and what is deployed together. Everything else is yours to decide: internal design, algorithms, code structure, and libraries unless a Binding fixes them.
 
-If the repository has no contract, ask the user. They can design one at https://aicspec.dev/editor/ and save it as `aic.yaml`.
+If the repository has no contract, offer to write one: [adopt.md](adopt.md) if the code already exists, or [create.md](create.md) for a system not yet built. The user can also design one at https://aicspec.dev/editor/ and save it as `aic.yaml`.
 
 ## Three rules
 
 1. The contract outranks the code and your own preferences. If they disagree, report it.
-2. Do not change the contract to make your implementation fit, or to make a check pass. Only the architect changes the architecture.
+2. Do not change the contract to make your implementation fit, or to make a check pass. Only the architect changes the architecture: you may propose a contract or a change, and the user decides.
 3. Never report something as verified unless you checked it. Unverified statements are reported as unverified.
 
 ## The command line
@@ -42,6 +42,8 @@ npx -y @aicspec/cli <command>
 | To do this | Read | Then run |
 | --- | --- | --- |
 | Understand a contract | [read.md](read.md) | `validate` |
+| Write a contract for code that exists | [adopt.md](adopt.md), then [review.md](review.md) | `reference contract-reference`, `validate`, `checklist` |
+| Write a contract for a new system | [create.md](create.md), then [review.md](review.md) | `reference contract-reference`, `validate` |
 | Change the design | [edit.md](edit.md) | `validate`, `reference contract-reference` |
 | Build it | [implement.md](implement.md) | `validate`, `plan`, `brief <module>` |
 | Check what was built | [verify.md](verify.md) | `checklist`, `verdict` |
