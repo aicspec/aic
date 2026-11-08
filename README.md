@@ -47,10 +47,35 @@ The contract fixes what an architect would want to be consulted about if it chan
 ## How it helps
 
 - **Architects** get one reviewable source of truth for the decisions that matter, and can start with a sketch and harden it over time.
+- **Existing projects** get a map of the architecture they really have. A coding agent writes the contract from the code and raises the shortcuts it finds as open questions, and from then on agents keep to what you accepted.
 - **Coding agents** get a bounded task: one module's contract should be enough to implement that module, without reading the whole system or inventing architecture.
 - **Verifiers** get something concrete to test an implementation against, and each failure names the primitive it violates.
 - **Tool builders** get an open format, so any tool can offer its own interface over the same contract.
 - **Teams** can change technology without rewriting the architecture, because technology choices are recorded separately. A change is a difference between versions, so its impact can be computed.
+
+## Start from where you are
+
+A contract does not have to be drawn by hand first. Your coding agent can write it, and you review it.
+
+### A project you already have
+
+Your agent reads the code and writes down the architecture it really has: the modules, who owns which data, who calls whom and what is deployed where. It does not tidy up. A module that reaches into another's data, or a call across what looks like a boundary, is recorded as it is, with an open Decision that asks whether it is intended. You review the result in the [editor](https://aicspec.dev/editor/), settle those questions and commit the file. From then on, every change is planned and verified against it, so the architecture stops drifting one prompt at a time.
+
+> Using aic, write an aic.yaml for this repository. Describe the architecture the code has today, and raise anything that looks accidental as an open decision instead of fixing it.
+
+### An idea
+
+Describe what you want to build. Your agent asks what it needs, drafts the contract and writes each choice it made as an open Decision for you to accept or reject. What you have not decided stays open, and nothing is built on it.
+
+> Using aic, draft an aic.yaml for the system I describe below. Ask me what you need first, and leave what I have not decided as open decisions.
+
+### Design it yourself
+
+Draw the system in the [live editor](https://aicspec.dev/editor/), or write the YAML, then download `aic.yaml` and commit it next to your code.
+
+> Using aic, implement aic.yaml. Follow its guide, build one module at a time, and verify each one.
+
+The prompts work with either way of [giving your agent the tools](#use-it-with-a-coding-agent).
 
 ## See it on an example
 
@@ -154,10 +179,7 @@ A coding agent can use the tools below to validate a contract, plan the work, ta
 
 Then tell your agent: *Implement aic.yaml with the aic skill. Follow it, build one module at a time, and verify each one.* With the MCP server, say "the aic MCP server" instead.
 
-No contract yet? The agent can write one, and leave what only you can decide as open Decisions for you to review in the [editor](https://aicspec.dev/editor/):
-
-- For code that already exists: *Write an aic.yaml for this repository with the aic skill. Describe the architecture the code has today, and raise anything that looks accidental as an open decision instead of fixing it.* The result is also a map of the system as it really is.
-- For a new system: *Draft an aic.yaml with the aic skill for the system I describe below. Ask me what you need first, and leave what I have not decided as open decisions.*
+No contract yet? The agent can write one, from your code or from an idea, as [Start from where you are](#start-from-where-you-are) shows.
 
 `skill install` copies [`skills/aic`](skills/aic) into `.claude/skills/aic` for Claude Code. Add `--global` to install it in `~/.claude/skills` for all your projects, or `--dir <path>` to install it in another agent's skills directory.
 
@@ -200,6 +222,7 @@ Version 0.1 is a working draft, so the format may still change.
 | [Online shop example](examples/online-shop.aic.yaml) | A complete contract |
 | [Sketch example](examples/sketch.aic.yaml) | The smallest useful contract, a Draft |
 | [The aic skill](skills/aic/SKILL.md) | How a coding agent works with a contract |
+| [Adopting existing code](skills/aic/adopt.md) | How a coding agent writes a contract for a codebase that already exists |
 
 ## Author
 
